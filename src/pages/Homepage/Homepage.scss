@@ -2,7 +2,7 @@
   display: grid;
   padding: 50px;
   grid-template-rows: 2fr 3fr;
-  height: 630px;
+  height: 700px;
   margin: 0px;
 }
 
@@ -11,45 +11,87 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid;
-    text-align: center;   
-  }  
+    // border: 2px solid;
+    text-align: center;
+    background-position: center;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+    // background-size: 470px auto ;
+    // overflow: hidden;
+    // background-image: url('SNEAKERS.jpg');   
+  }
+  .background-image {
+    // display: block;
+    width: 100%;
+    height: 100%;
+    transition: transform 3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    // &:hover {
+    //   cursor: pointer;
+    //   transform: scale(1.1);
+    // }
+    // border: 2px solid;
+    // padding: 0px;
+    // margin: 0px;
+  }
+  .menu-section:hover{
+    cursor: pointer;
+    
+    & .background-image {
+      transform: scale(1.1);
+    }
+
+    & .item-content{
+      opacity: 0.9;
+    }
+  }
+
+
 }  
 
-.homepage-menu-clothes {
+.homepage-clothes-menu {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr; 
-  grid-gap: 10px;
-  margin-bottom: 10px;
+  grid-gap: 6px;
+  margin-bottom: 6px;
+  // height: 270px;
   @include menu-section() 
 }
   
     
-.homepage-menu-gender {
+.homepage-gender-menu {
     display: grid;
     grid-template-columns: 1fr 1fr; 
-    grid-gap: 10px;
-    @include menu-section()  
-} 
+    grid-gap: 6px;
+    // height: 420px;
+    @include menu-section()
+}
+
+
     
 .item-content {
-  background-color: grey;
+  background-color: whitesmoke;
+  opacity: 0.7;
   display: flex;
   flex-direction: column;
   align-items: center;  
   width: 90px;
   height: 90px;
   padding: 0 10px;
+  position: absolute;
+  border: 2px solid;
+  // padding: auto;
+  .title {
+    color: #252323;
+    font-size: 22px;  
+    padding-top: 15px;  
+    margin: 0px; 
+  }
   .subtitle {
+    font-size: 18px;
     padding-bottom: 10px;
     margin : 0px;
   }
-  .title {
-    font-size: 22px;  
-    padding-top: 10px;  
-    margin: 0px; 
-  }
-
 }
 
       
