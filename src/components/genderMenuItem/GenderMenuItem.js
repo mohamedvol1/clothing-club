@@ -1,9 +1,10 @@
+import { withRouter } from 'react-router';
 
-const GenderMenuItem = ({gender, image, position, size}) => {
+const GenderMenuItem = ({gender, image, position, size, history, match, linkUrl}) => {
   return(
     <div 
       className="menu-section"
-      
+      onClick={() => history.push(`${match.url}${linkUrl}`)}
     >
       <div 
         className='background-image'
@@ -21,4 +22,4 @@ const GenderMenuItem = ({gender, image, position, size}) => {
   )
 }
 
-export default GenderMenuItem;
+export default withRouter(GenderMenuItem);

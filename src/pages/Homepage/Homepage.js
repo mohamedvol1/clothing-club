@@ -18,21 +18,24 @@ class Homepage extends Component {
           title: 'HATS',
           image: hatsimage,
           position: '50% 37%',
-          size: '470px auto'
+          size: '470px auto',
+          linkUrl: 'hats'
         },
         {
           id: 2,
           title: 'JACKETS',
           image: jacketsimage,
           position: '50% 37%',
-          size: '470px auto'
+          size: '470px auto',
+          linkUrl: ''
         },
         {
           id: 3,
           title: 'SNEAKERS',
           image: sneakersimage,
           position: 'center',
-          size: '470px auto'
+          size: '470px auto',
+          linkUrl: ''
         }
       ],
 
@@ -42,14 +45,16 @@ class Homepage extends Component {
           gender: "WOMEN",
           image: femaleimage,
           position: '50% 30%',
-          size: '705px auto'
+          size: '705px auto',
+          linkUrl: ''
         },
         {
           id: 5,
           gender: "MEN",
           image: maleimage,
           position: '50% 10%',
-          size: '705px auto'
+          size: '705px auto',
+          linkUrl: ''
         }
       ]
     }
@@ -59,9 +64,9 @@ class Homepage extends Component {
       <div className="homepage-directory">
         <div className="homepage-clothes-menu">
           {
-            this.state.clothesMenuSections.map(({title, id, image, position, size}) => {
+            this.state.clothesMenuSections.map(({ id, ...menuProps }) => {
               return(
-                <ClothesMenuItem title={title} key={id} image={image} position={position} size={size}/>
+                <ClothesMenuItem key={id} {...menuProps} />
               )
             })
           }
@@ -69,9 +74,9 @@ class Homepage extends Component {
         </div>
         <div className="homepage-gender-menu">
         {
-          this.state.genderMenuSections.map(({gender, id, image, position, size}) => {
+          this.state.genderMenuSections.map(({gender, id, image, position, size, linkUrl}) => {
             return(
-              <GenderMenuItem gender={gender} key={id} image={image} position={position} size={size} />
+              <GenderMenuItem gender={gender} key={id} image={image} position={position} size={size} linkUrl={linkUrl} />
             )
           })
         }    
