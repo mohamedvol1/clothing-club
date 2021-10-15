@@ -3,6 +3,8 @@ import { Switch, Route } from "react-router-dom";
 import './App.css';
 import Homepage from './pages/Homepage/Homepage.js';
 import ShopPage from './pages/ShopPage/ShopPage.js';
+import LogInPage from './pages/LogInPage/LogInPage'
+import NavBar from './components/NavBar/NavBar'
 
 
 
@@ -17,9 +19,11 @@ const HatPage = () => {
 function App() {
   return (
     <div >
+      <NavBar />
       <Switch>
         <Route exact path='/hats' component={HatPage}/>
         <Route exact path='/shop' component={ShopPage} />
+        <Route exact path='/LogIn' component={LogInPage} />
         <Route exact path='/' component={Homepage} />
       </Switch>
     </div>
