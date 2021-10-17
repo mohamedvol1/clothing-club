@@ -20,8 +20,9 @@
   width: 70%;
 }
 
-.signin-form-button {
-  display: block;
+.signin-form-buttons {
+  display: inline-flex;
+  gap: 20px;
   align-self: center;
   background-color: (0,0,0,1);  
 }

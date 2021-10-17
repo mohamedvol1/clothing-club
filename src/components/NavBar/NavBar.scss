@@ -55,5 +55,8 @@ $accent-color: linear-gradient(90deg,#ed145b 0,#7b31f4);
   padding: 0px 15px;
   color: white;
   text-decoration: none;
+  &:hover {
+    cursor: pointer;
+  }
 }
 

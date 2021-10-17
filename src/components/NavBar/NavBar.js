@@ -2,8 +2,11 @@ import './NavBar.scss';
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../Logo/Logo.svg';
+import { auth } from '../../firebase/firebase.utils';
 
-const NavBar = () => {
+
+
+const NavBar = ({ currentUser }) => {
   return (
     <>
       <div className='add-bar'>
@@ -22,9 +25,17 @@ const NavBar = () => {
             <Link className='contact-link option' to='/shop'>
               CONTACT
             </Link>
-            <Link className='login-link option' to='/LogIn'>
-              LOG IN
-            </Link>
+            {
+              currentUser ?
+              <div className='option' onClick={() => auth.signOut()}>
+                LOG OUT
+              </div> 
+              :
+              <Link className='login-link option' to='/LogIn'>
+                LOG IN
+              </Link>
+            }
+            
           </div>
       </div>
     </>

@@ -3,6 +3,7 @@ import './SignIn.scss';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/system';
+import { signInWithGoogle } from '../../firebase/firebase.utils';
 
 
 // $accent-color: linear-gradient(90deg,#ed145b 0,#7b31f4);
@@ -70,7 +71,7 @@ class SignIn extends Component {
             />
           </div>
           <div className='note'>{`register >>`}</div>
-          <div className='signin-form-button'>
+          <div className='signin-form-buttons'>
           <Button
             sx={{
               marginTop: '30px',
@@ -86,7 +87,26 @@ class SignIn extends Component {
             onClick={this.handelSubmit}
           >
             Sign In
-          </Button>    
+          </Button>
+          <Button
+            sx={{
+              marginTop: '30px',
+              borderRadius: '0px',
+              backgroundColor: '#4285F4',
+              '&:hover': {
+                backgroundColor: 'white',
+                color: 'black',
+                boxShadow: 'inset 0px 0px 0px 2px black',
+                boxSizing: 'border-box'
+              }
+            }}
+            variant="contained" 
+            size="large"
+            type='submit'
+            onClick={signInWithGoogle}
+          >
+            sign in with google
+          </Button>        
           </div>     
         </form>
       </div>
