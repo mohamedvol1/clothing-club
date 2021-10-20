@@ -3,6 +3,7 @@ import './SignUp.scss';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/system';
+import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 
 
 
@@ -25,20 +26,45 @@ class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: '',
+      displayName: '',
       email: '',
-      password: ''
+      password: '',
+      confirmPassword: ''
     }
   }
 
   handelChange = event => {
-    const { value, type } = event.target
-    this.setState({ [type] : value }, () => console.log(this.state))
+    const { name, value } = event.target
+    this.setState({ [name] : value }, () => console.log(this.state))
   }
 
-  handelSubmit = event => {
+  handelSubmit = async event => {
     event.preventDefault();
-    this.setState({ email: '', password: '', text: '' });
+    const { displayName, email, password, confirmPassword } = this.state;
+    if (password !== confirmPassword) {
+      alert("passwords don't match");
+      return;
+    }
+
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(email, password);
+      await createUserProfileDocument(user, { displayName });
+    
+      this.setState({
+        displayName: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+      })
+
+      // document.getElementById('filled-basic3').value = '';
+      // document.getElementById('filled-basic4').value = '';
+      // document.getElementById('filled-basic5').value = '';
+      // document.getElementById('filled-basic6').value = '';
+
+    } catch(error) {
+      console.error(error);
+    }
     // document.getElementById('filled-basic1').value = '';
     // document.getElementById('filled-basic2').value = '';
   }
@@ -59,7 +85,8 @@ class SignIn extends Component {
         >
           <div className='register-form-name-area'>
             <MyComponent 
-              type='text'   
+              type='text'
+              name='displayName'   
               id="filled-basic3" 
               label="Name" 
               variant="filled"
@@ -68,7 +95,8 @@ class SignIn extends Component {
           </div>
           <div className='signin-form-email-area'>
             <MyComponent 
-                type='email'   
+                type='email'
+                name='email'    
                 id="filled-basic4" 
                 label="Email" 
                 variant="filled"
@@ -78,9 +106,19 @@ class SignIn extends Component {
           </div>
           <div className='register-form-password-area'> 
             <MyComponent 
-              type='password'    
+              type='password'
+              name='password'        
               id="filled-basic5" 
               label="password" 
+              variant="filled"
+              required
+              onChange={this.handelChange}
+            />
+            <MyComponent 
+              type='password'
+              name='confirmPassword'    
+              id="filled-basic6" 
+              label="confirm password" 
               variant="filled"
               required
               onChange={this.handelChange}
@@ -101,7 +139,7 @@ class SignIn extends Component {
             type='submit'
             onClick={this.handelSubmit}
           >
-            Sign In
+            sign up
           </Button>    
           </div>      
         </form>

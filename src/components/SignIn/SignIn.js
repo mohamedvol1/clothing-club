@@ -3,7 +3,7 @@ import './SignIn.scss';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/system';
-import { signInWithGoogle } from '../../firebase/firebase.utils';
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 
 
 // $accent-color: linear-gradient(90deg,#ed145b 0,#7b31f4);
@@ -33,9 +33,22 @@ class SignIn extends Component {
     this.setState({ [type] : value }, () => console.log(this.state))
   }
 
-  handelSubmit = event => {
+  handelSubmit = async event => {
     event.preventDefault();
-    this.setState({ email: '', password: '' });
+
+    const { email, password } = this.state
+
+    try {
+
+      await auth.signInWithEmailAndPassword(email, password);
+      this.setState({ email: '', password: '' });
+
+    } catch(error) {
+
+      console.error(error);
+
+    }
+    // this.setState({ email: '', password: '' });
     // document.getElementById('filled-basic1').value = '';
     // document.getElementById('filled-basic2').value = '';
   }
