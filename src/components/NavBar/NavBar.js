@@ -3,12 +3,13 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../Logo/Logo.svg';
 import { auth } from '../../firebase/firebase.utils';
+import { connect } from 'react-redux';
 
 
 
 const NavBar = ({ currentUser }) => {
   return (
-    <>
+    <Fragment>
       <div className='add-bar'>
         Free shipping on your first order
       </div>
@@ -38,8 +39,12 @@ const NavBar = ({ currentUser }) => {
             
           </div>
       </div>
-    </>
+    </Fragment>
   )
 }
 
-export default NavBar;
+const mapStatetoProps = state => ({
+  currentUser: state.user.currentUser
+})
+
+export default connect(mapStatetoProps)(NavBar);

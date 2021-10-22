@@ -115,7 +115,6 @@ class SignIn extends Component {
             }}
             variant="contained" 
             size="large"
-            type='submit'
             onClick={signInWithGoogle}
           >
             sign in with google
