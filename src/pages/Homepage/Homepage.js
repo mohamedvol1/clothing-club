@@ -73,13 +73,13 @@ class Homepage extends Component {
           
         </div>
         <div className="homepage-gender-menu">
-        {
-          this.state.genderMenuSections.map(({gender, id, image, position, size, linkUrl}) => {
-            return(
-              <GenderMenuItem gender={gender} key={id} image={image} position={position} size={size} linkUrl={linkUrl} />
-            )
-          })
-        }    
+          {
+            this.state.genderMenuSections.map(({gender, id, image, position, size, linkUrl}) => {
+              return(
+                <GenderMenuItem gender={gender} key={id} image={image} position={position} size={size} linkUrl={linkUrl} />
+              )
+            })
+          }    
         </div>  
       </div>
     );

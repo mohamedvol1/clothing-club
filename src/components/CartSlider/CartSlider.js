@@ -39,7 +39,8 @@ const CartSlider = ({ cart, toggleCart }) => {
 }
 
 const mapStatetoProps = state => ({
-  cart: state.cart.showCart
+  cart: state.cart.showCart,
+  cartItems: state.cart.cartItems
 })
 
 const mapDispatchtoProps = dispatch => ({
