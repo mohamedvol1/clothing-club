@@ -7,6 +7,9 @@ $accent-color: linear-gradient(90deg,#ed145b 0,#7b31f4);
   justify-content: center;
   align-items: center;
   color: white;
+  position: sticky;
+  top: -1px;
+  z-index: 1600;
   
   
 //    background: rgb(240,151,227);
@@ -15,10 +18,14 @@ $accent-color: linear-gradient(90deg,#ed145b 0,#7b31f4);
 
 
 .nav-bar {
+  width: 100%;
   background-color: black;
   height: 68px;
   display: flex;
   justify-content: space-between;
+  position: sticky;
+  top: 1px;
+  z-index: 1600;
 }
 
 .logo {
@@ -52,7 +59,7 @@ $accent-color: linear-gradient(90deg,#ed145b 0,#7b31f4);
 }
 
 .option {
-  padding: 0px 15px;
+  margin: 0px 15px;
   color: white;
   text-decoration: none;
   &:hover {

@@ -5,9 +5,12 @@ import Homepage from './pages/Homepage/Homepage.js';
 import ShopPage from './pages/ShopPage/ShopPage.js';
 import LogInPage from './pages/LogInPage/LogInPage'
 import NavBar from './components/NavBar/NavBar';
+import CartSlider from './components/CartSlider/CartSlider';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { connect } from 'react-redux';
 import { setCurrentUser } from './Redux/user/userAction';
+
+
 
 
 const HatPage = () => {
@@ -60,6 +63,7 @@ class App extends Component {
     return (
       <div >
         <NavBar/>
+        <CartSlider />
         <Switch>
           <Route exact path='/hats' component={HatPage}/>
           <Route exact path='/shop' component={ShopPage} />

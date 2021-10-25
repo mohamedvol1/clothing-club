@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../Logo/Logo.svg';
 import { auth } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
+import ShoppingCart  from '../ShoppingCart/ShoppingCart';
 
 
 
-const NavBar = ({ currentUser }) => {
+
+const NavBar = ({ currentUser, toggleCart}) => {
   return (
     <Fragment>
       <div className='add-bar'>
@@ -36,7 +38,7 @@ const NavBar = ({ currentUser }) => {
                 LOG IN
               </Link>
             }
-            
+            <ShoppingCart onClick={toggleCart}/>
           </div>
       </div>
     </Fragment>
@@ -46,5 +48,7 @@ const NavBar = ({ currentUser }) => {
 const mapStatetoProps = state => ({
   currentUser: state.user.currentUser
 })
+
+
 
 export default connect(mapStatetoProps)(NavBar);
