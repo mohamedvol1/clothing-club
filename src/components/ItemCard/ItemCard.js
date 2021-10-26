@@ -9,9 +9,7 @@ const ItemCard = ({ item,  addItem }) => {
   const { imageUrl, name, price } = item
 
   const [checked, setChecked] = React.useState(false);
-  const handleHover = (flag) => {
-    setChecked(flag);
-  }
+  
   return (
     <div className='item-card'>
       <div 
@@ -24,29 +22,29 @@ const ItemCard = ({ item,  addItem }) => {
           backgroundImage: `url(${imageUrl})`    
         }}
       >
-      <Slide timeout={300} direction="up" in={checked} mountOnEnter unmountOnExit>
-        <Button
-          className='add-cart-button'
-          sx={{
-            width: '80%',
-            height: '50px',
-            display: 'block',   
-            borderRadius: '0px',
-            backgroundColor: 'black',
-            '&:hover': {
-              backgroundColor: 'white',
-              color: 'black',
-              boxShadow: 'inset 0px 0px 0px 2px black',
-              boxSizing: 'border-box'
-            }
-          }}
-          variant="contained" 
-          size="large"
-          onClick={() => addItem(item)}   
-        >
-          add to cart
-        </Button>
-      </Slide>
+        <Slide timeout={300} direction="up" in={checked} mountOnEnter unmountOnExit>
+          <Button
+            className='add-cart-button'
+            sx={{
+              width: '80%',
+              height: '50px',
+              display: 'block',   
+              borderRadius: '0px',
+              backgroundColor: 'black',
+              '&:hover': {
+                backgroundColor: 'white',
+                color: 'black',
+                boxShadow: 'inset 0px 0px 0px 2px black',
+                boxSizing: 'border-box'
+              }
+            }}
+            variant="contained" 
+            size="large"
+            onClick={() => addItem(item)}   
+          >
+            add to cart
+          </Button>
+        </Slide>
       </div>
       <div className='item-colors'>colors</div>
       <div className='item-card-footer'>

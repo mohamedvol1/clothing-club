@@ -3,7 +3,7 @@ import './ShoppingCart.scss';
 import { connect } from 'react-redux';
 import { toggleCart } from '../../Redux/cart/cartAction';
 
-const ShoppingCart = ({ toggleCart }) => {
+const ShoppingCart = ({ toggleCart, itemCount }) => {
   return (
     <div className='option shopping-cart' onClick={toggleCart}>
       <ShoppingBagOutlinedIcon
@@ -12,13 +12,17 @@ const ShoppingCart = ({ toggleCart }) => {
           fill: 'white'
         }}
       />
-      <span className='shopping-cart-items-number'>1</span>
+      <span className='shopping-cart-items-number'>{itemCount}</span>
     </div>
   )
 }
+
+const mapStatetoProps = ({ cart: { cartItems } }) => ({
+  itemCount: cartItems.reduce((accumulator, item) => accumulator += item.quantity, 0)
+})
 
 const mapDispatchtoProps = dispatch => ({
   toggleCart: () => dispatch(toggleCart())
 })
 
-export default connect(null, mapDispatchtoProps)(ShoppingCart);
+export default connect(mapStatetoProps, mapDispatchtoProps)(ShoppingCart);

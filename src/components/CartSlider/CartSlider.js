@@ -4,10 +4,11 @@ import Slide from '@mui/material/Slide';
 import CloseIcon from '@mui/icons-material/Close';
 import { connect } from 'react-redux';
 import { toggleCart } from '../../Redux/cart/cartAction';
+import  CartItem  from '../CartItem/CartItem';
 
-const CartSlider = ({ cart, toggleCart }) => {
+const CartSlider = ({ showCart, toggleCart, cartItems }) => {
   return (
-    <Slide timeout={500} direction="left" in={cart} mountOnEnter unmountOnExit>
+    <Slide timeout={500} direction="left" in={showCart} mountOnEnter unmountOnExit>
       <div className='cart-slider'>
         <div className='cart-slider-header'>
           <h2 className='cart-slider-header-text'>My Cart</h2>
@@ -16,7 +17,11 @@ const CartSlider = ({ cart, toggleCart }) => {
           </span>
         </div>
         <div className='cart-slider-items'>
-          cart items
+          {
+            cartItems.map( item => (
+              <CartItem key={item.id} item={item} />
+            ))
+          }
         </div>
         <Button
               sx={{
@@ -38,9 +43,9 @@ const CartSlider = ({ cart, toggleCart }) => {
   ) 
 }
 
-const mapStatetoProps = state => ({
-  cart: state.cart.showCart,
-  cartItems: state.cart.cartItems
+const mapStatetoProps = ({ cart: { showCart, cartItems } }) => ({
+  showCart,
+  cartItems
 })
 
 const mapDispatchtoProps = dispatch => ({

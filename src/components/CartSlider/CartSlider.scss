@@ -2,24 +2,26 @@
   display: block;
   height: 100%;
   width: 530px;
-  background-color: grey;
+  background-color: white;
   position: fixed;
   right: 0px;
   top: 0px; 
   z-index: 1700;
+  box-shadow: 20px 0px 30px black;
   // transition: width 2s;
   // will-change: width;
   // .cart-dropdown.scale {
   //   width: 50rem;
   // }
 
-  // overflow: scroll;
+  overflow: scroll;
 }
 
 .cart-slider-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 70px;
 }
 
 .cart-slider-header-text {
@@ -37,6 +39,10 @@
 }
 
 .cart-slider-items {
-  padding-top: 50px;
+  position: relative;
+  background-color: white;
+  margin: 10px;
+  
+  // overflow: scroll;
   
 }
