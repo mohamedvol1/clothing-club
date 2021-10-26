@@ -5,6 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { connect } from 'react-redux';
 import { toggleCart } from '../../Redux/cart/cartAction';
 import  CartItem  from '../CartItem/CartItem';
+import { selectCartItems } from '../../Redux/cart/cartSelector';
 
 const CartSlider = ({ showCart, toggleCart, cartItems }) => {
   return (
@@ -43,9 +44,9 @@ const CartSlider = ({ showCart, toggleCart, cartItems }) => {
   ) 
 }
 
-const mapStatetoProps = ({ cart: { showCart, cartItems } }) => ({
-  showCart,
-  cartItems
+const mapStatetoProps = state => ({
+  showCart: state.cart.showCart,
+  cartItems: selectCartItems(state)
 })
 
 const mapDispatchtoProps = dispatch => ({

@@ -2,6 +2,7 @@ import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import './ShoppingCart.scss';
 import { connect } from 'react-redux';
 import { toggleCart } from '../../Redux/cart/cartAction';
+import { selectCartItemsCount } from '../../Redux/cart/cartSelector';
 
 const ShoppingCart = ({ toggleCart, itemCount }) => {
   return (
@@ -17,8 +18,8 @@ const ShoppingCart = ({ toggleCart, itemCount }) => {
   )
 }
 
-const mapStatetoProps = ({ cart: { cartItems } }) => ({
-  itemCount: cartItems.reduce((accumulator, item) => accumulator += item.quantity, 0)
+const mapStatetoProps = state => ({
+  itemCount: selectCartItemsCount(state)
 })
 
 const mapDispatchtoProps = dispatch => ({
