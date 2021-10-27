@@ -1,5 +1,8 @@
+$accent-color: linear-gradient(90deg,#ed145b 0,#7b31f4);
+
 .cart-slider {
-  display: block;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 530px;
   background-color: white;
@@ -46,3 +49,28 @@
   // overflow: scroll;
   
 }
+
+.cart-slider-empty-msg {
+  // padding-top: 60px;
+  height: 500px;
+  position: relative;
+  // margin-top: 100px;
+  & >p {
+    font-size: 22px;
+    position: absolute;
+    margin: 0px;
+    top: 40%;
+    left: 35%;
+    opacity: .4;
+    // padding-top: 30px;
+    // margin-top: 200px;
+  }
+}
+
+// .cart-slider-checkout-btn{
+//   background: $accent-color;
+//   &:hover {
+//     background: black;
+//   }
+
+// }

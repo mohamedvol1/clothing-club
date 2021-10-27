@@ -1,0 +1,26 @@
+.checkout-page {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  overflow-x: hidden
+}
+
+.checkout-page-header {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 50px;
+  & >span {
+    font-size: 1.7rem;
+    width: 25%;
+    text-align: center;
+  }
+}
+
+.checkout-page-items {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}

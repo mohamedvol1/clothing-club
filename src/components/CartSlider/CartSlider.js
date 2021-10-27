@@ -1,13 +1,18 @@
-import Button from '@mui/material/Button';
+import React from 'react';
 import './CartSlider.scss';
 import Slide from '@mui/material/Slide';
+import Button from '@mui/material/Button';
+import  CartItem  from '../CartItem/CartItem';
 import CloseIcon from '@mui/icons-material/Close';
 import { connect } from 'react-redux';
 import { toggleCart } from '../../Redux/cart/cartAction';
-import  CartItem  from '../CartItem/CartItem';
-import { selectCartItems } from '../../Redux/cart/cartSelector';
+import { selectCartItems, selectShowCart } from '../../Redux/cart/cartSelector';
+import { createStructuredSelector } from 'reselect';
+import { withRouter } from 'react-router';
 
-const CartSlider = ({ showCart, toggleCart, cartItems }) => {
+
+
+const CartSlider = ({ showCart, toggleCart, cartItems, history }) => {
   return (
     <Slide timeout={500} direction="left" in={showCart} mountOnEnter unmountOnExit>
       <div className='cart-slider'>
@@ -19,38 +24,47 @@ const CartSlider = ({ showCart, toggleCart, cartItems }) => {
         </div>
         <div className='cart-slider-items'>
           {
+            cartItems.length ?
             cartItems.map( item => (
               <CartItem key={item.id} item={item} />
             ))
+            :
+            <div className='cart-slider-empty-msg'>
+              <p> Your Cart is empty... </p>
+            </div>
           }
         </div>
-        <Button
+        <Button className='cart-slider-checkout-btn'
               sx={{
-                marginTop: '30px',
+                margin: '10px',
                 borderRadius: '0px',
-                backgroundColor: 'rgba(224, 11, 203, 1)',
+                background: 'linear-gradient(90deg,#ed145b 0,#7b31f4)',
+                transition: 'opacity .3s',
                 '&:hover': {
-                  backgroundColor: 'black',
+                  opacity: '.8'
                 }
               }}
               variant="contained" 
               size="large"
-              type='submit'
+              onClick={() => {
+                history.push('/checkout');
+                toggleCart();
+              }}
             >
-              Sign In
+              go to checkout
             </Button>
       </div>
     </Slide>
   ) 
 }
 
-const mapStatetoProps = state => ({
-  showCart: state.cart.showCart,
-  cartItems: selectCartItems(state)
+const mapStatetoProps = createStructuredSelector({
+  showCart: selectShowCart,
+  cartItems: selectCartItems
 })
 
 const mapDispatchtoProps = dispatch => ({
   toggleCart: () => dispatch(toggleCart())
 })
 
-export default connect(mapStatetoProps, mapDispatchtoProps)(CartSlider);
+export default withRouter(connect(mapStatetoProps, mapDispatchtoProps)(CartSlider));

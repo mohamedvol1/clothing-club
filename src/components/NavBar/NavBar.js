@@ -5,11 +5,12 @@ import { ReactComponent as Logo } from '../../Logo/Logo.svg';
 import { auth } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
 import ShoppingCart  from '../ShoppingCart/ShoppingCart';
-
-
+import { selectCurrentUser } from '../../Redux/user/userSelector'
+import { createStructuredSelector } from 'reselect';
 
 
 const NavBar = ({ currentUser, toggleCart}) => {
+  console.log('hey there',currentUser)
   return (
     <Fragment>
       <div className='add-bar'>
@@ -45,8 +46,8 @@ const NavBar = ({ currentUser, toggleCart}) => {
   )
 }
 
-const mapStatetoProps = state => ({
-  currentUser: state.user.currentUser
+const mapStatetoProps = createStructuredSelector({
+  currentUser: selectCurrentUser
 })
 
 
