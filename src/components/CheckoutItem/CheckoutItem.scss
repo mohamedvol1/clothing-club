@@ -15,8 +15,8 @@
 
 .checkout-item-remove-btn {
   position: absolute;
-  left: 98%;
-  top: 2%;
+  left: 97.5%;
+  top: 5%;
   transition: color .1s;
   &:hover {
     color: red;
@@ -50,7 +50,14 @@
 }
 
 .checkout-item-quantity {
-  @include tex-aliginment()
+  @include tex-aliginment();
+  gap: 5px;
+  & > span {
+    color: #be6eec;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
 
 .checkout-item-price {
