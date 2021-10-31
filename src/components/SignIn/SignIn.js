@@ -46,6 +46,7 @@ class SignIn extends Component {
     } catch(error) {
 
       console.error(error);
+      alert('somthing wrong with your credentials')
 
     }
     // this.setState({ email: '', password: '' });

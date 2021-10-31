@@ -1,7 +1,7 @@
-import './ClothesMenuItem.scss';
 import { withRouter } from 'react-router';
+import './MenuItem.scss';
 
-const ClothesMenuItem = ({title, image, position, size, history, match, linkUrl}) => {
+const MenuItem = ({title, image, position, size, history, match, linkUrl}) => {
   return(
     <div 
       className="menu-section"
@@ -23,4 +23,4 @@ const ClothesMenuItem = ({title, image, position, size, history, match, linkUrl}
   )
 }
 
-export default withRouter(ClothesMenuItem);
+export default withRouter(MenuItem);
