@@ -18,10 +18,14 @@ import { createStructuredSelector } from 'reselect';
 
 
 
-const HatPage = () => {
+const HatPage = ({ match }) => {
+  console.log('hey mate' , match.url)
   return (
     <div>
-      <h1>HAT PAGE</h1>
+      <div>
+        <h1>HAT PAGE</h1>
+      </div>
+      
     </div>
   )
 }
@@ -71,8 +75,8 @@ class App extends Component {
         <NavBar/>
         <CartSlider />
         <Switch>
-          <Route exact path='/hats' component={HatPage}/>
-          <Route exact path='/shop' component={ShopPage} />
+          <Route  path='/hats' component={HatPage}/>
+          <Route  path='/shop' component={ShopPage} />
           <Route exact path='/LogIn' 
             render={() => 
               currentUser ?
@@ -82,6 +86,7 @@ class App extends Component {
             } 
           />
           <Route exact path='/checkout' component={CheckoutPage} />
+          
           <Route exact path='/' component={Homepage} />
         </Switch>
       </div>
