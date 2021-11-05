@@ -46,8 +46,17 @@
   width: 80%;
   margin: auto;
   margin-top: 20px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
   & >span {
     font-size: 3rem;
+  }
+}
+.checkout-button {
+  // margin: 50px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+  & >.StripeCheckout {
+   width: 10%;
   }
 }
