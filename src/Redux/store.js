@@ -3,7 +3,7 @@ import { persistStore } from 'redux-persist'
 import rootReducer from './rootReducer';
 import logger from 'redux-logger';
 
-const middleWares = [logger];
+const middleWares = [];
 
 if (process.env.NODE_ENV === 'development') {
   middleWares.push(logger)
