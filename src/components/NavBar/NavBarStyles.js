@@ -1,8 +1,9 @@
-$accent-color: linear-gradient(90deg,#ed145b 0,#7b31f4);
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-.add-bar {
+export const AppBarContainer = styled.div`
   height: 35px;  
-  background: $accent-color;
+  background: linear-gradient(90deg,#ed145b 0,#7b31f4);;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,14 +11,9 @@ $accent-color: linear-gradient(90deg,#ed145b 0,#7b31f4);
   position: sticky;
   top: -1px;
   z-index: 1600;
-  
-  
-//    background: rgb(240,151,227);
-//   background: linear-gradient(90deg, rgba(240,151,227,1) 0%, rgba(118,191,238,1) 56%, rgba(229,33,255,1) 100%);
- }
+`;
 
-
-.nav-bar {
+export const NavBarContainer = styled.div`
   width: 100%;
   background-color: black;
   height: 68px;
@@ -26,44 +22,28 @@ $accent-color: linear-gradient(90deg,#ed145b 0,#7b31f4);
   position: sticky;
   top: 1px;
   z-index: 1600;
-}
+`
 
-.logo {
-  color: red;
+export const LogoContainer = styled(Link)`
+  display: block;
+  padding-left: 20px;
   transform: rotateX(180deg);
-}
-
-.logo-container {
-  display: block;
-  font-size: 3rem;
-  height: 100%;
-  width: 70px;
   padding-top: 2px;
-  padding-left: 25px;
-  
- 
-}
-.logo-link {
-  display: block;
-  height: 100%;
-  position: relative;
-}
+`
 
-.options {
-  // display: block;
+export const  OptionsDiv = styled.div`
   height: 100%;
   width: 50%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-}
+`
 
-.option {
+export const OptionLink = styled(Link)`
   margin: 0px 15px;
   color: white;
   text-decoration: none;
   &:hover {
     cursor: pointer;
   }
-}
-
+`

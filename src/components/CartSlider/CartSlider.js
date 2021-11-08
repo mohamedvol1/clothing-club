@@ -34,25 +34,25 @@ const CartSlider = ({ showCart, toggleCart, cartItems, history }) => {
             </div>
           }
         </div>
-        <Button className='cart-slider-checkout-btn'
-              sx={{
-                margin: '10px',
-                borderRadius: '0px',
-                background: 'linear-gradient(90deg,#ed145b 0,#7b31f4)',
-                transition: 'opacity .3s',
-                '&:hover': {
-                  opacity: '.8'
-                }
-              }}
-              variant="contained" 
-              size="large"
-              onClick={() => {
-                history.push('/checkout');
-                toggleCart();
-              }}
-            >
-              go to checkout
-            </Button>
+        <Button 
+          sx={{
+            margin: '10px',
+            borderRadius: '0px',
+            background: 'linear-gradient(90deg,#ed145b 0,#7b31f4)',
+            transition: 'opacity .3s',
+            '&:hover': {
+              opacity: '.8'
+            }
+          }}
+          variant="contained" 
+          size="large"
+          onClick={() => {
+            history.push('/checkout');
+            toggleCart();
+          }}
+        >
+          go to checkout
+        </Button>
       </div>
     </Slide>
   ) 
