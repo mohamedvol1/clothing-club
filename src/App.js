@@ -7,16 +7,14 @@ import ShopPage from './pages/ShopPage/ShopPage.js';
 import LogInPage from './pages/LogInPage/LogInPage'
 import NavBar from './components/NavBar/NavBar';
 import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
-
 import CartSlider from './components/CartSlider/CartSlider';
+
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { connect } from 'react-redux';
 import { setCurrentUser } from './Redux/user/userAction';
 import { selectCurrentUser } from './Redux/user/userSelector'
+// import { selectCollectionsArray } from './Redux/shop/shopSelector';
 import { createStructuredSelector } from 'reselect';
-
-
-
 
 const HatPage = ({ match }) => {
   console.log('hey mate' , match.url)
@@ -58,8 +56,16 @@ class App extends Component {
         setCurrentUser(userAuth);
         
       }
-      
+      // one time run code 
+      // addCollectionsAndDocuments(
+      //   'collections', collectionsArray.map(
+      //     ({ title, items }) => ({ title, items })
+      //   )
+      // )
+    
     })
+
+
   }
 
   componentWillUnmount() {
@@ -96,7 +102,8 @@ class App extends Component {
 }
 
 const mapStatetoProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
+  // collectionsArray: selectCollectionsArray
 })
 
 

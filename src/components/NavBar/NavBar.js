@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 // import { appBarContainer } from './NavBarStyles';
  
 import { ReactComponent as Logo } from '../../Logo/Logo.svg';

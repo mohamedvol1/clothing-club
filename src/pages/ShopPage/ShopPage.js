@@ -1,20 +1,58 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
+import { connect } from 'react-redux';
+
+import { SpinnerContainer } from './ShopPageStyles';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import CollectionOverview from '../../components/CollectionOverview/CollectionOverview';
 import CollectionPage from '../CollectionPage/CollectionPage'
 
-const ShopPage = ({ match }) => {
-  console.log('hey over here' , match.url)
-    return (
-      <div className='shop-page'>
+import { firestore, mapCollectionsSnapshotsToNew } from '../../firebase/firebase.utils';
+
+import { updateShopData } from '../../Redux/shop/shopActions';
+
+class ShopPage extends Component  {
+  state = {
+    loading: true
+  }
+
+
+  unsubscribeFromSnapshot = null;
+
+  componentDidMount() {
+    const { updateShopData } = this.props;
+    const collectionRef = firestore.collection('collections');
+    
+    this.unsubscribeFromSnapshot = collectionRef.onSnapshot(async snapshot => {
+      const collectionsMap = mapCollectionsSnapshotsToNew(snapshot);
+      updateShopData(collectionsMap)
+      this.setState({ loading: false })
+    })
+  }
+
+  render() {
+    const { match } = this.props;
+    const { loading } = this.state;
+    return loading ? (
+      <SpinnerContainer>
+        <CircularProgress sx={{
+          color: '#7b31f4'
+        }} />
+      </SpinnerContainer>
+    ) : (
       <Switch> 
         <Route exact path={`${match.path}`} component={CollectionOverview} />
-        <Route exact path={`${match.path}/:collectionId`} component={CollectionPage} />
-          
+        <Route exact path={`${match.path}/:collectionId`} component={CollectionPage} />     
       </Switch>
-      </div>
     )
+          
+    
+  }
 }
 
-export default ShopPage;
+const mapDispatchtoProps = dispatch => ({
+  updateShopData: collectionsMap => dispatch(updateShopData(collectionsMap))
+})
+
+export default connect(null, mapDispatchtoProps)(ShopPage);
