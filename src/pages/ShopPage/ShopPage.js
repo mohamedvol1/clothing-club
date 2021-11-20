@@ -8,33 +8,21 @@ import CircularProgress from '@mui/material/CircularProgress';
 import CollectionOverview from '../../components/CollectionOverview/CollectionOverview';
 import CollectionPage from '../CollectionPage/CollectionPage'
 
-import { firestore, mapCollectionsSnapshotsToNew } from '../../firebase/firebase.utils';
+import { createStructuredSelector } from 'reselect';
+import { selectCollectionsIsFetching, selectCollectionsIsLoaded } from '../../Redux/shop/shopSelector';
+import { fetchCollectionsStart } from '../../Redux/shop/shopActions';
 
-import { updateShopData } from '../../Redux/shop/shopActions';
 
 class ShopPage extends Component  {
-  state = {
-    loading: true
-  }
-
-
-  unsubscribeFromSnapshot = null;
-
   componentDidMount() {
-    const { updateShopData } = this.props;
-    const collectionRef = firestore.collection('collections');
-    
-    collectionRef.get().then(snapshot => {
-      const collectionsMap = mapCollectionsSnapshotsToNew(snapshot);
-      updateShopData(collectionsMap)
-      this.setState({ loading: false })
-    })
+    const { fetchCollectionsStart } = this.props;
+    fetchCollectionsStart();
   }
 
   render() {
-    const { match } = this.props;
-    const { loading } = this.state;
-    return loading ? (
+    const { match, isFetching, isloaded } = this.props;
+    console.log(isloaded)
+    return isFetching || !isloaded  ? (
       <SpinnerContainer>
         <CircularProgress sx={{
           color: '#7b31f4'
@@ -51,8 +39,13 @@ class ShopPage extends Component  {
   }
 }
 
-const mapDispatchtoProps = dispatch => ({
-  updateShopData: collectionsMap => dispatch(updateShopData(collectionsMap))
+const mapStatetoProps = createStructuredSelector({
+  isFetching: selectCollectionsIsFetching,
+  isloaded: selectCollectionsIsLoaded
 })
 
-export default connect(null, mapDispatchtoProps)(ShopPage);
+const mapDispatchtoProps = dispatch => ({
+  fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
+})
+
+export default connect(mapStatetoProps, mapDispatchtoProps)(ShopPage);

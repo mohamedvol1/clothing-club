@@ -9,12 +9,14 @@ import NavBar from './components/NavBar/NavBar';
 import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
 import CartSlider from './components/CartSlider/CartSlider';
 
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import { checkUserSession } from './Redux/user/userAction';
+
 import { connect } from 'react-redux';
-import { setCurrentUser } from './Redux/user/userAction';
+
 import { selectCurrentUser } from './Redux/user/userSelector'
 // import { selectCollectionsArray } from './Redux/shop/shopSelector';
 import { createStructuredSelector } from 'reselect';
+// import { auth } from './firebase/firebase.utils';
 
 const HatPage = ({ match }) => {
   console.log('hey mate' , match.url)
@@ -39,43 +41,29 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-    const { setCurrentUser } = this.props 
-      if (userAuth) { 
-        console.log('user object',userAuth)
-        const userRef = await createUserProfileDocument(userAuth);
-        
-        userRef.onSnapshot(snapshot => {
-          setCurrentUser({
-              id: snapshot.id,
-              ...snapshot.data()
-          })
-        });
-      } else {
-        
-        setCurrentUser(userAuth);
-        
-      }
-      // one time run code 
-      // addCollectionsAndDocuments(
-      //   'collections', collectionsArray.map(
-      //     ({ title, items }) => ({ title, items })
-      //   )
-      // )
+    // auth.signOut()
+     
+    const { currentUser } = this.props
+    console.log('currentUser before', currentUser)
+
+    const { checkUserSession } = this.props;
+    console.log('currentUser after', currentUser)
+    checkUserSession()
     
-    })
 
-
+    console.log('currentUser after 1', currentUser)
   }
 
+  // gives error
   componentWillUnmount() {
     this.unsubscribeFromAuth();
     console.log('componentWillUnmount');
   }
 
   render () {
+
     const { currentUser } = this.props
-    console.log('hello from app,js', currentUser)
+    console.log('hello from app.js', currentUser)
     return (
       <div >
         <NavBar/>
@@ -106,9 +94,9 @@ const mapStatetoProps = createStructuredSelector({
   // collectionsArray: selectCollectionsArray
 })
 
-
 const mapDispatchtoProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+  checkUserSession: () => dispatch(checkUserSession())
 })
+
 
 export default connect(mapStatetoProps, mapDispatchtoProps)(App);

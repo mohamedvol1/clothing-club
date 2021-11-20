@@ -3,19 +3,22 @@ import './SignIn.scss';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/system';
-import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 
+
+import { googleSignInStart, emailSignInStart } from '../../Redux/user/userAction'
+
+import { connect } from 'react-redux';
 
 // $accent-color: linear-gradient(90deg,#ed145b 0,#7b31f4);
 const MyComponent = styled(TextField)({
   width: '100%',
-              marginBottom: '25px',
-              '& > .MuiFilledInput-root': {
-                borderRadius: '0px',
-                '&:hover:before': {
-                  borderBottom: '2px solid #e00bcb !important',
-                } 
-              }
+  marginBottom: '25px',
+  '& > .MuiFilledInput-root': {
+    borderRadius: '0px',
+    '&:hover:before': {
+      borderBottom: '2px solid #e00bcb !important',
+    } 
+  }
            
 })
 
@@ -35,26 +38,29 @@ class SignIn extends Component {
 
   handelSubmit = async event => {
     event.preventDefault();
+    const { emailSignInStart } = this.props;
+    const { email, password } = this.state;
 
-    const { email, password } = this.state
+    emailSignInStart(email, password)
 
-    try {
+    // try {
 
-      await auth.signInWithEmailAndPassword(email, password);
-      this.setState({ email: '', password: '' });
+    //   await auth.signInWithEmailAndPassword(email, password);
+    //   this.setState({ email: '', password: '' });
 
-    } catch(error) {
+    // } catch(error) {
 
-      console.error(error);
-      alert('somthing wrong with your credentials')
+    //   console.error(error);
+    //   alert('somthing wrong with your credentials')
 
-    }
+    // }
     // this.setState({ email: '', password: '' });
     // document.getElementById('filled-basic1').value = '';
     // document.getElementById('filled-basic2').value = '';
   }
 
   render() {
+    const { googleSignInStart } = this.props;
     return (
       <div className='sign-in active'>
         <h1 className='sign-in-title'>Sign in</h1>
@@ -116,7 +122,7 @@ class SignIn extends Component {
             }}
             variant="contained" 
             size="large"
-            onClick={signInWithGoogle}
+            onClick={googleSignInStart}
           >
             sign in with google
           </Button>        
@@ -128,6 +134,11 @@ class SignIn extends Component {
   
 }
 
-export default SignIn;
+const mapDispatchtoProps = dispatch => ({
+  googleSignInStart: () => dispatch(googleSignInStart()),
+  emailSignInStart: (email, password) => dispatch(emailSignInStart({ email, password }))
+})
+
+export default connect(null, mapDispatchtoProps)(SignIn);
 
 

@@ -1,4 +1,10 @@
-import { TOGGLE_CART, ADD_ITEM, DELETE_ITEM, DECREASE_QUANTITY} from './cartActionTypes'
+import { 
+  TOGGLE_CART,
+  ADD_ITEM,
+  DELETE_ITEM,
+  DECREASE_QUANTITY,
+  CLEAR_CART
+} from './cartActionTypes'
 
 export const toggleCart = state => ({
   type: TOGGLE_CART
@@ -19,3 +25,6 @@ export const decreaseQuantity = item => ({
   payload: item
 })
 
+export const clearCart = () => ({
+  type: CLEAR_CART
+})

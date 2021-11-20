@@ -3,11 +3,11 @@ import './SignUp.scss';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/system';
-import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
+
+import { connect } from 'react-redux';
+import { signUpStart } from '../../Redux/user/userAction';
 
 
-
-// $accent-color: linear-gradient(90deg,#ed145b 0,#7b31f4);
 const MyComponent = styled(TextField)({
   width: '100%',
               marginBottom: '25px',
@@ -47,26 +47,12 @@ class SignIn extends Component {
     }
 
     try {
-      const { user } = await auth.createUserWithEmailAndPassword(email, password);
-      await createUserProfileDocument(user, { displayName });
-    
-      this.setState({
-        displayName: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-      })
-
-      // document.getElementById('filled-basic3').value = '';
-      // document.getElementById('filled-basic4').value = '';
-      // document.getElementById('filled-basic5').value = '';
-      // document.getElementById('filled-basic6').value = '';
+      const { signUpStart } = this.props
+      signUpStart(email, password, displayName);
 
     } catch(error) {
-      console.error(error);
+      console.error('Error in signing up',error);
     }
-    // document.getElementById('filled-basic1').value = '';
-    // document.getElementById('filled-basic2').value = '';
   }
 
   
@@ -150,6 +136,10 @@ class SignIn extends Component {
   
 }
 
-export default SignIn;
+const mapDispatchtoProps = dispatch => ({
+  signUpStart: (email, password, displayName) => dispatch(signUpStart({ email, password, displayName }))
+})
+
+export default connect(null, mapDispatchtoProps)(SignIn);
 
 
