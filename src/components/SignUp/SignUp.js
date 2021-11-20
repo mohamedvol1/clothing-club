@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './SignUp.scss';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -22,117 +22,107 @@ const MyComponent = styled(TextField)({
 
 
 
-class SignIn extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      displayName: '',
-      email: '',
-      password: '',
-      confirmPassword: ''
-    }
-  }
+const SignIn = ({ signUpStart }) => {
+   
+  const [userCredentials, setCredentials] = useState({
+    displayName: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  })
 
-  handelChange = event => {
+  const handelChange = event => {
     const { name, value } = event.target
-    this.setState({ [name] : value }, () => console.log(this.state))
+    setCredentials({ ...userCredentials, [name] : value })
   }
 
-  handelSubmit = async event => {
+  const handelSubmit = async event => {
     event.preventDefault();
-    const { displayName, email, password, confirmPassword } = this.state;
+    const { displayName, email, password, confirmPassword } = userCredentials;
     if (password !== confirmPassword) {
       alert("passwords don't match");
       return;
     }
 
     try {
-      const { signUpStart } = this.props
       signUpStart(email, password, displayName);
-
     } catch(error) {
       console.error('Error in signing up',error);
     }
   }
-
-  
-
-  render() {
     
-
-    return (
-      <div className='register'>
-        <h1 className='register-title'>Register</h1>  
-        <form 
-          className="register-form" 
-          noValidate 
-          autoComplete='off'
-          onSubmit={this.handelSubmit}
+  return (
+    <div className='register'>
+      <h1 className='register-title'>Register</h1>  
+      <form 
+        className="register-form" 
+        noValidate 
+        autoComplete='off'
+        onSubmit={handelSubmit}
+      >
+        <div className='register-form-name-area'>
+          <MyComponent 
+            type='text'
+            name='displayName'   
+            id="filled-basic3" 
+            label="Name" 
+            variant="filled"
+            onChange={handelChange}
+          />
+        </div>
+        <div className='signin-form-email-area'>
+          <MyComponent 
+              type='email'
+              name='email'    
+              id="filled-basic4" 
+              label="Email" 
+              variant="filled"
+              required
+              onChange={handelChange}
+            />
+        </div>
+        <div className='register-form-password-area'> 
+          <MyComponent 
+            type='password'
+            name='password'        
+            id="filled-basic5" 
+            label="password" 
+            variant="filled"
+            required
+            onChange={handelChange}
+          />
+          <MyComponent 
+            type='password'
+            name='confirmPassword'    
+            id="filled-basic6" 
+            label="confirm password" 
+            variant="filled"
+            required
+            onChange={handelChange}
+          />
+        </div>
+        <div className='register-form-button'>
+        <Button
+          sx={{
+            marginTop: '30px',
+            borderRadius: '0px',
+            backgroundColor: 'rgba(224, 11, 203, 1)',
+            '&:hover': {
+              backgroundColor: 'black',
+            }
+          }}
+          variant="contained" 
+          size="large"
+          type='submit'
+          onClick={handelSubmit}
         >
-          <div className='register-form-name-area'>
-            <MyComponent 
-              type='text'
-              name='displayName'   
-              id="filled-basic3" 
-              label="Name" 
-              variant="filled"
-              onChange={this.handelChange}
-            />
-          </div>
-          <div className='signin-form-email-area'>
-            <MyComponent 
-                type='email'
-                name='email'    
-                id="filled-basic4" 
-                label="Email" 
-                variant="filled"
-                required
-                onChange={this.handelChange}
-              />
-          </div>
-          <div className='register-form-password-area'> 
-            <MyComponent 
-              type='password'
-              name='password'        
-              id="filled-basic5" 
-              label="password" 
-              variant="filled"
-              required
-              onChange={this.handelChange}
-            />
-            <MyComponent 
-              type='password'
-              name='confirmPassword'    
-              id="filled-basic6" 
-              label="confirm password" 
-              variant="filled"
-              required
-              onChange={this.handelChange}
-            />
-          </div>
-          <div className='register-form-button'>
-          <Button
-            sx={{
-              marginTop: '30px',
-              borderRadius: '0px',
-              backgroundColor: 'rgba(224, 11, 203, 1)',
-              '&:hover': {
-                backgroundColor: 'black',
-              }
-            }}
-            variant="contained" 
-            size="large"
-            type='submit'
-            onClick={this.handelSubmit}
-          >
-            sign up
-          </Button>    
-          </div>      
-        </form>
-               
-      </div>
-    )
-  }
+          sign up
+        </Button>    
+        </div>      
+      </form>
+              
+    </div>
+  )
   
 }
 

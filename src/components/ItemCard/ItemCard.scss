@@ -1,6 +1,9 @@
 
 .item-card {
-  width: 24.5%;
+  min-width: 350px;
+  min-height: 350px;
+  margin-bottom: 100px;
+  // height: 400px;
 }
 
 .background-card-image {

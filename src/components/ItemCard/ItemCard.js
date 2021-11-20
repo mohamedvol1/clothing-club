@@ -17,9 +17,12 @@ const ItemCard = ({ item,  addItem }) => {
         onMouseLeave={() => setChecked(false)}
         className='background-card-image'
         style={{
-          height: '350px',
+          height: '100%',
           width: '100%',
-          backgroundImage: `url(${imageUrl})`    
+          backgroundImage: `url(${imageUrl})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          // backgroundPosition:'center',
         }}
       >
         <Slide timeout={300} direction="up" in={checked} mountOnEnter unmountOnExit>
@@ -46,7 +49,7 @@ const ItemCard = ({ item,  addItem }) => {
           </Button>
         </Slide>
       </div>
-      <div className='item-colors'>colors</div>
+     
       <div className='item-card-footer'>
         <p className='item-name'>{name}</p>
         <p className='item-price'>{`${price}$`}</p>

@@ -40,9 +40,9 @@ export const signUpStart = emailAndPasswordAndDisplayName => ({
   payload: emailAndPasswordAndDisplayName
 })
 
-export const signUpSuccess = () => ({
-  type: SIGN_UP_SUCCESS
-})
+// export const signUpSuccess = () => ({
+//   type: SIGN_UP_SUCCESS
+// })
 //refactor it
 export const signUpError = (error) => ({
   type: SIGN_UP_ERROR,

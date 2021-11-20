@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch } from "react-router-dom";
 import { connect } from 'react-redux';
 
@@ -13,30 +13,23 @@ import { selectCollectionsIsFetching, selectCollectionsIsLoaded } from '../../Re
 import { fetchCollectionsStart } from '../../Redux/shop/shopActions';
 
 
-class ShopPage extends Component  {
-  componentDidMount() {
-    const { fetchCollectionsStart } = this.props;
+const ShopPage = ({ fetchCollectionsStart, match, isFetching, isloaded }) => {
+  useEffect(() => {
     fetchCollectionsStart();
-  }
+  }, [fetchCollectionsStart])
 
-  render() {
-    const { match, isFetching, isloaded } = this.props;
-    console.log(isloaded)
-    return isFetching || !isloaded  ? (
-      <SpinnerContainer>
-        <CircularProgress sx={{
-          color: '#7b31f4'
-        }} />
-      </SpinnerContainer>
-    ) : (
-      <Switch> 
-        <Route exact path={`${match.path}`} component={CollectionOverview} />
-        <Route exact path={`${match.path}/:collectionId`} component={CollectionPage} />     
-      </Switch>
-    )
-          
-    
-  }
+  return isFetching || !isloaded  ? (
+    <SpinnerContainer>
+      <CircularProgress sx={{
+        color: '#7b31f4'
+      }} />
+    </SpinnerContainer>
+  ) : (
+    <Switch> 
+      <Route exact path={`${match.path}`} component={CollectionOverview} />
+      <Route exact path={`${match.path}/:collectionId`} component={CollectionPage} />     
+    </Switch>
+  )
 }
 
 const mapStatetoProps = createStructuredSelector({

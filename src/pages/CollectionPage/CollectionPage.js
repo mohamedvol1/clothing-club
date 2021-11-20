@@ -18,8 +18,11 @@ const CollectionPage = ({ collection }) => {
       <div className='collection-page-items'>
         {
           items.map((item) => {
-            return(
-              <ItemCard key={item.id} item={item} />
+            return(             
+                <ItemCard 
+                  key={item.id} 
+                  item={item} 
+                />
             )
           })
         }

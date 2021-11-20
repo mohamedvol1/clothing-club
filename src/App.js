@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route, Redirect } from "react-router-dom";
 import './App.css';
 
@@ -14,9 +14,7 @@ import { checkUserSession } from './Redux/user/userAction';
 import { connect } from 'react-redux';
 
 import { selectCurrentUser } from './Redux/user/userSelector'
-// import { selectCollectionsArray } from './Redux/shop/shopSelector';
 import { createStructuredSelector } from 'reselect';
-// import { auth } from './firebase/firebase.utils';
 
 const HatPage = ({ match }) => {
   console.log('hey mate' , match.url)
@@ -30,68 +28,38 @@ const HatPage = ({ match }) => {
   )
 }
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      currentUser: null
-    }
-  }
+const App = ({ checkUserSession, currentUser }) => {
 
-  unsubscribeFromAuth = null;
-
-  componentDidMount() {
-    // auth.signOut()
-     
-    const { currentUser } = this.props
-    console.log('currentUser before', currentUser)
-
-    const { checkUserSession } = this.props;
-    console.log('currentUser after', currentUser)
+  useEffect(() => {  
     checkUserSession()
-    
+  }, [checkUserSession]) 
 
-    console.log('currentUser after 1', currentUser)
-  }
-
-  // gives error
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-    console.log('componentWillUnmount');
-  }
-
-  render () {
-
-    const { currentUser } = this.props
-    console.log('hello from app.js', currentUser)
-    return (
-      <div >
-        <NavBar/>
-        <CartSlider />
-        <Switch>
-          <Route  path='/hats' component={HatPage}/>
-          <Route  path='/shop' component={ShopPage} />
-          <Route exact path='/LogIn' 
-            render={() => 
-              currentUser ?
-              (<Redirect to='/' />) 
-              : 
-              (<LogInPage />) 
-            } 
-          />
-          <Route exact path='/checkout' component={CheckoutPage} />
-          
-          <Route exact path='/' component={Homepage} />
-        </Switch>
-      </div>
-    
-    );
-  }
+  return (
+    <div >
+      <NavBar/>
+      <CartSlider />
+      <Switch>
+        <Route  path='/hats' component={HatPage}/>
+        <Route  path='/shop' component={ShopPage} />
+        <Route exact path='/LogIn' 
+          render={() => 
+            currentUser ?
+            (<Redirect to='/' />) 
+            : 
+            (<LogInPage />) 
+          } 
+        />
+        <Route exact path='/checkout' component={CheckoutPage} />
+        
+        <Route exact path='/' component={Homepage} />
+      </Switch>
+    </div>
+  
+  );
 }
 
 const mapStatetoProps = createStructuredSelector({
   currentUser: selectCurrentUser,
-  // collectionsArray: selectCollectionsArray
 })
 
 const mapDispatchtoProps = dispatch => ({
