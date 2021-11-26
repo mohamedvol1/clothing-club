@@ -9,12 +9,11 @@ import NavBar from './components/NavBar/NavBar';
 import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
 import CartSlider from './components/CartSlider/CartSlider';
 
+import { useDispatch, useSelector } from 'react-redux';
+
 import { checkUserSession } from './Redux/user/userAction';
-
-import { connect } from 'react-redux';
-
 import { selectCurrentUser } from './Redux/user/userSelector'
-import { createStructuredSelector } from 'reselect';
+
 
 const HatPage = ({ match }) => {
   console.log('hey mate' , match.url)
@@ -28,11 +27,13 @@ const HatPage = ({ match }) => {
   )
 }
 
-const App = ({ checkUserSession, currentUser }) => {
-
+const App = () => {
+  const currentUser = useSelector(selectCurrentUser)
+  const dispatch = useDispatch(checkUserSession())
+  
   useEffect(() => {  
-    checkUserSession()
-  }, [checkUserSession]) 
+    dispatch(checkUserSession())
+  }, [dispatch]) 
 
   return (
     <div >
@@ -58,13 +59,4 @@ const App = ({ checkUserSession, currentUser }) => {
   );
 }
 
-const mapStatetoProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
-})
-
-const mapDispatchtoProps = dispatch => ({
-  checkUserSession: () => dispatch(checkUserSession())
-})
-
-
-export default connect(mapStatetoProps, mapDispatchtoProps)(App);
+export default App;

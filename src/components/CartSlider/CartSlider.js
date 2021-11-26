@@ -4,21 +4,24 @@ import Slide from '@mui/material/Slide';
 import Button from '@mui/material/Button';
 import  CartItem  from '../CartItem/CartItem';
 import CloseIcon from '@mui/icons-material/Close';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+
 import { toggleCart } from '../../Redux/cart/cartAction';
 import { selectCartItems, selectShowCart } from '../../Redux/cart/cartSelector';
-import { createStructuredSelector } from 'reselect';
-import { withRouter } from 'react-router';
 
+const CartSlider = () => {
+  const cartItems = useSelector(selectCartItems);
+  const showCart = useSelector(selectShowCart);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-
-const CartSlider = ({ showCart, toggleCart, cartItems, history }) => {
   return (
     <Slide timeout={500} direction="left" in={showCart} mountOnEnter unmountOnExit>
       <div className='cart-slider'>
         <div className='cart-slider-header'>
           <h2 className='cart-slider-header-text'>My Cart</h2>
-          <span className="cart-slider-close" onClick={toggleCart}>
+          <span className="cart-slider-close" onClick={() => dispatch(toggleCart())}>
             <CloseIcon className="close-icon"/>
           </span>
         </div>
@@ -48,7 +51,7 @@ const CartSlider = ({ showCart, toggleCart, cartItems, history }) => {
           size="large"
           onClick={() => {
             history.push('/checkout');
-            toggleCart();
+            dispatch(toggleCart());
           }}
         >
           go to checkout
@@ -58,13 +61,13 @@ const CartSlider = ({ showCart, toggleCart, cartItems, history }) => {
   ) 
 }
 
-const mapStatetoProps = createStructuredSelector({
-  showCart: selectShowCart,
-  cartItems: selectCartItems
-})
+// const mapStatetoProps = createStructuredSelector({
+//   showCart: selectShowCart,
+//   cartItems: selectCartItems
+// })
 
-const mapDispatchtoProps = dispatch => ({
-  toggleCart: () => dispatch(toggleCart())
-})
+// const mapDispatchtoProps = dispatch => ({
+//   toggleCart: () => dispatch(toggleCart())
+// })
 
-export default withRouter(connect(mapStatetoProps, mapDispatchtoProps)(CartSlider));
+export default CartSlider;

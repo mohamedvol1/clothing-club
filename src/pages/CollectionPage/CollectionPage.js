@@ -4,13 +4,15 @@ import './CollectionPage.scss'
 
 import ItemCard from '../../components/ItemCard/ItemCard';
 
-
 import { selectCollection } from '../../Redux/shop/shopSelector';
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router";
 
-const CollectionPage = ({ collection }) => {
-  console.log('heeeeeeeheeeeeeeeeeheeeeeeee', collection)
-  const { title, items } = collection
+const CollectionPage = () => {
+  const { collectionId } = useParams();
+  const collection = useSelector(selectCollection(collectionId))
+  const { title, items } = collection;
+
   return(
     <Fragment>
     <div className='collection-page-style'>
@@ -32,8 +34,4 @@ const CollectionPage = ({ collection }) => {
   )
 }
 
-const mapStatetoProps = (state, ownProps) => ({
-  collection: selectCollection(ownProps.match.params.collectionId)(state)
-})
-
-export default connect(mapStatetoProps)(CollectionPage); 
+export default CollectionPage; 

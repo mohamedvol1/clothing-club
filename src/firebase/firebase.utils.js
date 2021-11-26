@@ -71,7 +71,6 @@ export const getCurrentUser = () => {
    return new Promise((resolve, reject) => {
      const unsubscribe = auth.onAuthStateChanged(userAuth => {
        unsubscribe();
-       console.log('haaaaaaaaaaaaaaaaah', userAuth)
        resolve(userAuth);
      }, reject)
    });

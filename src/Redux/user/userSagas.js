@@ -59,9 +59,8 @@ export function* isUserAuthenticated() {
   try {
     const userAuth = yield call(getCurrentUser);
     if (!userAuth) {
-      console.log('###############', userAuth)
+      return;
     }
-    console.log('77777777777777777', userAuth)
     yield getSnapshotFromAuth(userAuth);
   } catch(error) {
     yield put(SignInError(error.message))
