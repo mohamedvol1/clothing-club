@@ -1,8 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const bodyparser = require('body-parser');
-const path = require('path');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
