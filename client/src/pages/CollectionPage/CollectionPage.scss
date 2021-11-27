@@ -1,0 +1,26 @@
+.collection-page-title {
+  text-align: center;
+}
+
+.collection-page-style {
+  max-width: 95%;
+  margin: auto ;
+  // margin: auto ;
+}
+
+.collection-page-items {
+  width: 100%;
+  // display: inline-flex;
+  // flex-wrap: wrap;
+  // justify-content: space-between;
+  
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 14px;
+  
+
+}
+
+.add-margin-bottom {
+  margin-bottom: 100px;
+}

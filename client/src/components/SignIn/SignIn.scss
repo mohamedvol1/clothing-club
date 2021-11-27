@@ -1,0 +1,44 @@
+
+
+.sign-in {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+}
+
+.sign-in-title {
+  padding-top: 4em;
+  margin: auto;
+}
+
+.signin-form {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 3rem;
+  margin: auto;
+  width: 70%;
+}
+
+.signin-form-buttons {
+  display: inline-flex;
+  gap: 20px;
+  align-self: center;
+  background-color: (0,0,0,1);  
+}
+
+.note {
+  margin: auto;
+  transition: color .1s;
+  &:hover {
+    color: #e00bcb;
+  }
+}
+
+.active {
+  // display: none;
+}
+
+
+/////////////////////////////////@include
+
