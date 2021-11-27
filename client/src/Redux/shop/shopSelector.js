@@ -33,6 +33,6 @@ export const selectCollection = memoize(collectionUrlParam =>
 
   export const selectCollectionsIsLoaded = createSelector(
     [selectShop],
-    shop => !!Object.keys(shop.collections).length
+    shop => !!shop.collections
   )
 
