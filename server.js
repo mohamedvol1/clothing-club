@@ -28,6 +28,7 @@ app.listen(port, error => {
   console.log('server is running in port' + port);
 });
 
+// handing the strip payment
 app.post('/payment', (req, res) => {
   const body = {
     source: req.body.token.id,
