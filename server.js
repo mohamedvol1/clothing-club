@@ -30,6 +30,7 @@ app.listen(port, error => {
 
 // handing the strip payment
 app.post('/payment', (req, res) => {
+  console.log('request body is here',req.body)
   const body = {
     source: req.body.token.id,
     amount: req.body.amount,
@@ -37,7 +38,7 @@ app.post('/payment', (req, res) => {
   };
 
   stripe.charges.create(body, (stripeErr, stripeRes) => {
-    console.log('stripe response here>>>>',res)
+    console.log('stripe stripeErr here>>>>',stripeErr)
     if(stripeErr) {
       res.status(500).send({ error: stripeErr })
     } else {

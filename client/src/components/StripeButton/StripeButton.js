@@ -10,7 +10,7 @@ const StripeCheckoutButton = ({ price }) => {
 
   const OnToken = token => {
     axios({
-      url: 'https://clothing-club-102.herokuapp.com/payment',
+      url: '/payment',
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
