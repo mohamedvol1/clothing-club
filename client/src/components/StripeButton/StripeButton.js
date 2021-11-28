@@ -10,22 +10,23 @@ const StripeCheckoutButton = ({ price }) => {
 
   const OnToken = token => {
     axios({
-      url: '/payment',
+      url: 'https://clothing-club-102.herokuapp.com/payment',
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
-      data: {
+      data: JSON.stringify({
         amount: priceForStripe,
         token
-      }
+      })
     })
       .then(response => {
+        console.log('res from fron >>>>>>>>>', response)
         alert('Payment successfully done')
       })
       .catch(error => {
-        console.log('Payment Error', JSON.parse(error))
+        console.log('Payment Error', error)
         alert('Sorry, there was an issue in your payment')
       })
   }
