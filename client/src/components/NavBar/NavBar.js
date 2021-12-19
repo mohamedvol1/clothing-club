@@ -9,16 +9,16 @@ import ShoppingCart  from '../ShoppingCart/ShoppingCart';
 import { selectCurrentUser } from '../../Redux/user/userSelector'
 import { createStructuredSelector } from 'reselect';
 
-import { AppBarContainer, NavBarContainer, LogoContainer, OptionsDiv, OptionLink } from './NavBarStyles'
+import { AddBarContainer, NavBarContainer, LogoContainer, OptionsDiv, OptionLink } from './NavBarStyles'
 import { signOutStart } from '../../Redux/user/userAction';
 
 const NavBar = ({ currentUser, toggleCart, signOutStart}) => {
   console.log('hey there',currentUser)
   return (
     <Fragment>
-      <AppBarContainer>
+      <AddBarContainer>
         Free shipping on your first order
-      </AppBarContainer>
+      </AddBarContainer>
       <NavBarContainer>
           <LogoContainer  to='/'>
               <Logo className='logo' />      

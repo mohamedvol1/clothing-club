@@ -31,7 +31,8 @@ const ItemCard = ({ item,  addItem }) => {
             sx={{
               width: '80%',
               height: '50px',
-              display: 'block',   
+              display: 'block', 
+              fontSize: '.8em',
               borderRadius: '0px',
               backgroundColor: 'black',
               '&:hover': {

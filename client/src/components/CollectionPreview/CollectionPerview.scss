@@ -1,13 +1,20 @@
 .collection-style {
   max-width: 95%;
   margin: auto ;
+  @media screen and (max-width: 800px) {
+    max-width: 85%;
+    // margin: 0 30px ;
+  }
   // margin-bottom: 50px;
 }
 
 .preview {
   width: 100%;
   display: inline-flex;
-  flex-wrap: nowrap;
   justify-content: space-between;
   gap: 8px;
+  @media screen and (max-width: 800px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }

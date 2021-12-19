@@ -1,7 +1,7 @@
 import { withRouter } from 'react-router';
 import './MenuItem.scss';
 
-const MenuItem = ({title, image, position, size, history, match, linkUrl}) => {
+const MenuItem = ({title, image, position, history, match, linkUrl}) => {
   return(
     <div 
       className="menu-section"
@@ -12,7 +12,8 @@ const MenuItem = ({title, image, position, size, history, match, linkUrl}) => {
         style={{
           backgroundImage: `url(${image})`,
           backgroundPosition: position,
-          backgroundSize: size
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat'
         }}
       /> 
       <div className="item-content ">

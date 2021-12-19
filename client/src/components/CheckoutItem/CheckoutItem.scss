@@ -1,11 +1,14 @@
 
 .checkout-item {
   position: relative;
+  height: 220px;
+  @media screen and (max-width: 800px) {
+    height: 150px;
+  }
   margin-top: 10px;
   border: 1px solid #ccc;
   display: flex;
   flex-direction: row;
-  height: 220px;
   & >div {
     width: 25%;
     font-size: large;
@@ -16,6 +19,9 @@
 .checkout-item-remove-btn {
   position: absolute;
   left: 97.5%;
+  @media screen and (max-width: 800px) {
+    left: 95%;
+  }
   top: 5%;
   transition: color .1s;
   &:hover {

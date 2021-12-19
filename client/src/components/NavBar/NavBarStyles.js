@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const AppBarContainer = styled.div`
+export const AddBarContainer = styled.div`
+  width: 100%;
   height: 35px;  
   background: linear-gradient(90deg,#ed145b 0,#7b31f4);;
   display: flex;

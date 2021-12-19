@@ -4,6 +4,10 @@
   grid-template-rows: 2fr 3fr;
   height: 700px;
   margin: 0px;
+  @media screen and  (max-width: 800px) {
+    padding: 20px;
+    height: 500px;
+  }
 }
 
 

@@ -20,6 +20,9 @@
 
 .checkout-page-items {
   width: 80%;
+  @media screen and (max-width: 800px) {
+    width: 90%;
+  }
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -57,6 +60,6 @@
   justify-content: center;
   margin-bottom: 100px;
   & >.StripeCheckout {
-   width: 10%;
+   width: 27%;
   }
 }
