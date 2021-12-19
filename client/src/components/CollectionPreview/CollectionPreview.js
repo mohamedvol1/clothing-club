@@ -1,10 +1,13 @@
 import ItemCard  from "../ItemCard/ItemCard";
-import './CollectionPerview.scss'
+import './CollectionPerview.scss';
+import { useHistory } from 'react-router';
 
 const CollectionPreview = ({ title, items }) => {
+  const history = useHistory();
+
   return (
     <div className='collection-style'>
-      <h1 className='title'>{title.toUpperCase()}</h1>
+      <h1 className='title' onClick={() => history.push('/shop/' + title.toLowerCase())}>{title.toUpperCase()}</h1>
       <div className='preview'>
         {
           items

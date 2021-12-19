@@ -40,7 +40,7 @@ const App = () => {
       <NavBar/>
       <CartSlider />
       <Switch>
-        <Route  path='/hats' component={HatPage}/>
+        
         <Route  path='/shop' component={ShopPage} />
         <Route exact path='/LogIn' 
           render={() => 

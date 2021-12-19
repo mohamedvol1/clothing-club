@@ -12,7 +12,7 @@ export const directoryData = {
       image: hatsimage,
       position: '50% 37%',
       size: '470px auto',
-      linkUrl: 'hats'
+      linkUrl: 'shop/hats'
     },
     {
       id: 2,
@@ -20,7 +20,7 @@ export const directoryData = {
       image: jacketsimage,
       position: '50% 37%',
       size: '470px auto',
-      linkUrl: ''
+      linkUrl: 'shop/jackets'
     },
     {
       id: 3,
@@ -28,7 +28,7 @@ export const directoryData = {
       image: sneakersimage,
       position: 'center',
       size: '470px auto',
-      linkUrl: ''
+      linkUrl: 'shop/sneakers'
     }
   ],
 
@@ -39,7 +39,7 @@ export const directoryData = {
       image: femaleimage,
       position: '50% 30%',
       size: '705px auto',
-      linkUrl: ''
+      linkUrl: 'shop/women'
     },
     {
       id: 5,
@@ -47,7 +47,7 @@ export const directoryData = {
       image: maleimage,
       position: '50% 10%',
       size: '705px auto',
-      linkUrl: ''
+      linkUrl: 'shop/men'
     }
   ]
 }
