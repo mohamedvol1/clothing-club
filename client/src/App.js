@@ -15,17 +15,6 @@ import { checkUserSession } from './Redux/user/userAction';
 import { selectCurrentUser } from './Redux/user/userSelector'
 
 
-const HatPage = ({ match }) => {
-  console.log('hey mate' , match.url)
-  return (
-    <div>
-      <div>
-        <h1>HAT PAGE</h1>
-      </div>
-      
-    </div>
-  )
-}
 
 const App = () => {
   const currentUser = useSelector(selectCurrentUser)
