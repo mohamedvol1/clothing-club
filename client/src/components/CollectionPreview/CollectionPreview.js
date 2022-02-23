@@ -7,7 +7,12 @@ const CollectionPreview = ({ title, items }) => {
 
   return (
     <div className='collection-style'>
-      <h1 className='title' onClick={() => history.push('/shop/' + title.toLowerCase())}>{title.toUpperCase()}</h1>
+      <h1 
+        className='collection-style-title' 
+        onClick={() => history.push('/shop/' + title.toLowerCase())}
+      >
+        {title.toUpperCase()}
+      </h1>
       <div className='preview'>
         {
           items

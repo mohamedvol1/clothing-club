@@ -8,6 +8,12 @@
   // margin-bottom: 50px;
 }
 
+.collection-style-title {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .preview {
   width: 100%;
   display: inline-flex;
